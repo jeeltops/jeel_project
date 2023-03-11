@@ -13,20 +13,29 @@ def index(request):
         return render(request,'index.html')
 
 def about(request):
-    buyer_row = Buyer.objects.get(email = request.session['email'])
-    return render(request,'about.html',{'user_data': buyer_row})
-
+    try:
+        buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request,'about.html',{'user_data': buyer_row})
+    except:
+        return render(request,'about.html')
+        
 def contact(request):
-    buyer_row = Buyer.objects.get(email = request.session['email'])
-    return render(request,'contact.html',{'user_data' : buyer_row})
+        buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request,'contact.html',{'user_data' : buyer_row})
 
 def cycle(request):
-    buyer_row = Buyer.objects.get(email = request.session['email'])
-    return render(request,'cycle.html',{'user_data' : buyer_row})
+    try:
+        buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request,'cycle.html',{'user_data': buyer_row})
+    except:
+        return render(request,'cycle.html')
 
 def news(request):
-    buyer_row = Buyer.objects.get(email = request.session['email'])
-    return render(request,'news.html',{'user_data' : buyer_row})
+    try:
+        buyer_row = Buyer.objects.get(email = request.session['email'])
+        return render(request,'news.html',{'user_data': buyer_row})
+    except:
+        return render(request,'news.html')
 
 def add_row(requset):
     Buyer.objects.create(
